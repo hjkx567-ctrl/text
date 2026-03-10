@@ -1,0 +1,1575 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="在安全且專業的環境中體驗真正的賽道駕駛文化。台灣頂級賽道活動俱樂部。">
+  <meta name="theme-color" content="#0a0a0a">
+  <title>貝堤加賽道俱樂部 | Bettega Race Club</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --background: #0a0a0a;
+      --foreground: #fafafa;
+      --card: #141414;
+      --card-foreground: #fafafa;
+      --muted: #1a1a1a;
+      --muted-foreground: #a0a0a0;
+      --border: #262626;
+      --martini-dark-blue: #1e3a5f;
+      --martini-light-blue: #5ba3d9;
+      --martini-red: #d4443c;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--background);
+      color: var(--foreground);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* Navigation */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 50;
+      background: rgba(10, 10, 10, 0.9);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo img {
+      height: 40px;
+      width: auto;
+    }
+
+    .nav-links {
+      display: none;
+      list-style: none;
+      gap: 32px;
+    }
+
+    .nav-links a {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--muted-foreground);
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--foreground);
+    }
+
+    .nav-cta {
+      display: none;
+      padding: 10px 20px;
+      background: var(--foreground);
+      color: var(--background);
+      font-size: 14px;
+      font-weight: 600;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+
+    .nav-cta:hover {
+      opacity: 0.9;
+    }
+
+    .nav-mobile-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      cursor: pointer;
+      color: var(--foreground);
+    }
+
+    @media (min-width: 1024px) {
+      .nav-links {
+        display: flex;
+      }
+      .nav-cta {
+        display: block;
+      }
+      .nav-mobile-toggle {
+        display: none;
+      }
+      .nav-logo img {
+        height: 48px;
+      }
+    }
+
+    /* Hero Section */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+    }
+
+    .hero-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.7));
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      padding: 0 24px;
+      max-width: 900px;
+    }
+
+    .hero-stripe {
+      display: flex;
+      justify-content: center;
+      gap: 4px;
+      margin-bottom: 32px;
+    }
+
+    .hero-stripe span {
+      width: 48px;
+      height: 4px;
+    }
+
+    .hero-stripe span:nth-child(1) { background: var(--martini-dark-blue); }
+    .hero-stripe span:nth-child(2) { background: var(--martini-light-blue); }
+    .hero-stripe span:nth-child(3) { background: var(--martini-red); }
+
+    .hero-title {
+      font-size: 36px;
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 24px;
+      text-wrap: balance;
+    }
+
+    .hero-subtitle {
+      font-size: 18px;
+      color: rgba(255,255,255,0.8);
+      margin-bottom: 40px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 16px 32px;
+      background: var(--foreground);
+      color: var(--background);
+      font-size: 16px;
+      font-weight: 600;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+
+    .btn-primary:hover {
+      opacity: 0.9;
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 16px 32px;
+      background: transparent;
+      color: var(--foreground);
+      font-size: 16px;
+      font-weight: 600;
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255,255,255,0.1);
+    }
+
+    @media (min-width: 768px) {
+      .hero-title {
+        font-size: 56px;
+      }
+      .hero-subtitle {
+        font-size: 20px;
+      }
+      .hero-buttons {
+        flex-direction: row;
+        justify-content: center;
+      }
+    }
+
+    /* Section Styles */
+    .section {
+      padding: 80px 24px;
+    }
+
+    @media (min-width: 768px) {
+      .section {
+        padding: 120px 24px;
+      }
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--martini-light-blue);
+      margin-bottom: 16px;
+    }
+
+    .section-label::before {
+      content: '';
+      width: 24px;
+      height: 1px;
+      background: var(--martini-light-blue);
+    }
+
+    .section-title {
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 24px;
+      text-wrap: balance;
+    }
+
+    @media (min-width: 768px) {
+      .section-title {
+        font-size: 42px;
+      }
+    }
+
+    /* About Section */
+    .about-grid {
+      display: grid;
+      gap: 48px;
+    }
+
+    @media (min-width: 1024px) {
+      .about-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 80px;
+        align-items: center;
+      }
+    }
+
+    .about-text {
+      font-size: 18px;
+      color: var(--muted-foreground);
+      line-height: 1.8;
+    }
+
+    .feature-cards {
+      display: grid;
+      gap: 16px;
+    }
+
+    .feature-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      transition: border-color 0.2s;
+    }
+
+    .feature-card:hover {
+      border-color: var(--martini-light-blue);
+    }
+
+    .feature-icon {
+      width: 48px;
+      height: 48px;
+      background: var(--muted);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+      color: var(--martini-light-blue);
+    }
+
+    .feature-title {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .feature-desc {
+      font-size: 14px;
+      color: var(--muted-foreground);
+    }
+
+    /* Experience Section */
+    .experience {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .experience-bg {
+      position: absolute;
+      inset: 0;
+    }
+
+    .experience-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .experience-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, rgba(0,0,0,0.95), rgba(0,0,0,0.7));
+    }
+
+    .experience-content {
+      position: relative;
+      z-index: 10;
+    }
+
+    .experience-grid {
+      display: grid;
+      gap: 48px;
+    }
+
+    @media (min-width: 1024px) {
+      .experience-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 80px;
+      }
+    }
+
+    .experience-features {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .exp-feature {
+      display: flex;
+      gap: 16px;
+    }
+
+    .exp-feature-icon {
+      flex-shrink: 0;
+      width: 40px;
+      height: 40px;
+      background: rgba(91, 163, 217, 0.1);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--martini-light-blue);
+    }
+
+    .exp-feature-title {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .exp-feature-desc {
+      font-size: 14px;
+      color: var(--muted-foreground);
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      padding-top: 32px;
+      border-top: 1px solid var(--border);
+      margin-top: 32px;
+    }
+
+    .stat-value {
+      font-size: 28px;
+      font-weight: 700;
+    }
+
+    .stat-label {
+      font-size: 14px;
+      color: var(--muted-foreground);
+      margin-top: 4px;
+    }
+
+    /* Gallery Section */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    @media (min-width: 768px) {
+      .gallery-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 24px;
+      }
+    }
+
+    .gallery-item {
+      position: relative;
+      aspect-ratio: 1;
+      overflow: hidden;
+      border-radius: 12px;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.1);
+    }
+
+    .gallery-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .gallery-item:hover .gallery-overlay {
+      opacity: 1;
+    }
+
+    /* Lifestyle Section */
+    .lifestyle {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .lifestyle-bg {
+      position: absolute;
+      inset: 0;
+    }
+
+    .lifestyle-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .lifestyle-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to left, rgba(0,0,0,0.95), rgba(0,0,0,0.7));
+    }
+
+    .lifestyle-content {
+      position: relative;
+      z-index: 10;
+      max-width: 600px;
+      margin-left: auto;
+    }
+
+    .lifestyle-text {
+      font-size: 18px;
+      color: var(--muted-foreground);
+      line-height: 1.8;
+      margin-bottom: 32px;
+    }
+
+    .lifestyle-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .lifestyle-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 16px;
+    }
+
+    .lifestyle-check {
+      width: 24px;
+      height: 24px;
+      background: rgba(91, 163, 217, 0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--martini-light-blue);
+      flex-shrink: 0;
+    }
+
+    /* Calendar Section */
+    .calendar-intro {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 64px;
+    }
+
+    .calendar-intro p {
+      font-size: 18px;
+      color: var(--muted-foreground);
+    }
+
+    .events-grid {
+      display: grid;
+      gap: 24px;
+    }
+
+    @media (min-width: 768px) {
+      .events-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .events-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .event-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: all 0.3s;
+    }
+
+    .event-card:hover {
+      border-color: var(--martini-light-blue);
+      transform: translateY(-4px);
+    }
+
+    .event-header {
+      padding: 24px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .event-badge {
+      display: inline-block;
+      padding: 4px 12px;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      border-radius: 4px;
+      margin-bottom: 16px;
+    }
+
+    .event-badge.track-day {
+      background: rgba(91, 163, 217, 0.1);
+      color: var(--martini-light-blue);
+    }
+
+    .event-badge.time-attack {
+      background: rgba(212, 68, 60, 0.1);
+      color: var(--martini-red);
+    }
+
+    .event-date {
+      font-size: 14px;
+      color: var(--muted-foreground);
+      margin-bottom: 8px;
+    }
+
+    .event-title {
+      font-size: 20px;
+      font-weight: 600;
+    }
+
+    .event-body {
+      padding: 24px;
+    }
+
+    .event-info {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .event-info-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      color: var(--muted-foreground);
+    }
+
+    .event-info-item svg {
+      color: var(--martini-light-blue);
+    }
+
+    .event-btn {
+      display: block;
+      width: 100%;
+      padding: 12px;
+      text-align: center;
+      background: var(--muted);
+      color: var(--foreground);
+      font-size: 14px;
+      font-weight: 600;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .event-btn:hover {
+      background: var(--border);
+    }
+
+    /* Culture Section */
+    .culture {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .culture-bg {
+      position: absolute;
+      inset: 0;
+    }
+
+    .culture-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .culture-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.8), rgba(0,0,0,0.9));
+    }
+
+    .culture-content {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+    }
+
+    .culture-title {
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 24px;
+    }
+
+    @media (min-width: 768px) {
+      .culture-title {
+        font-size: 42px;
+      }
+    }
+
+    .culture-text {
+      font-size: 18px;
+      color: var(--muted-foreground);
+      max-width: 800px;
+      margin: 0 auto 48px;
+      line-height: 1.8;
+    }
+
+    .culture-grid {
+      display: grid;
+      gap: 24px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    @media (min-width: 768px) {
+      .culture-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .culture-card {
+      background: rgba(20, 20, 20, 0.8);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 32px;
+      text-align: center;
+    }
+
+    .culture-icon {
+      width: 64px;
+      height: 64px;
+      background: rgba(91, 163, 217, 0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      color: var(--martini-light-blue);
+    }
+
+    .culture-card-title {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .culture-card-desc {
+      font-size: 14px;
+      color: var(--muted-foreground);
+    }
+
+    /* Partnership Section */
+    .partnership-grid {
+      display: grid;
+      gap: 48px;
+    }
+
+    @media (min-width: 1024px) {
+      .partnership-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 80px;
+        align-items: center;
+      }
+    }
+
+    .partnership-text {
+      font-size: 18px;
+      color: var(--muted-foreground);
+      line-height: 1.8;
+      margin-bottom: 32px;
+    }
+
+    .partnership-types {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .partnership-type {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 20px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+    }
+
+    .partnership-icon {
+      flex-shrink: 0;
+      width: 40px;
+      height: 40px;
+      background: rgba(91, 163, 217, 0.1);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--martini-light-blue);
+    }
+
+    .partnership-type-title {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .partnership-type-desc {
+      font-size: 14px;
+      color: var(--muted-foreground);
+    }
+
+    .contact-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 40px;
+    }
+
+    .contact-title {
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 24px;
+    }
+
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .contact-icon {
+      width: 48px;
+      height: 48px;
+      background: var(--muted);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--martini-light-blue);
+    }
+
+    .contact-label {
+      font-size: 12px;
+      color: var(--muted-foreground);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .contact-value {
+      font-size: 16px;
+      font-weight: 500;
+      margin-top: 2px;
+    }
+
+    /* Footer */
+    .footer {
+      background: var(--card);
+      border-top: 1px solid var(--border);
+      padding: 64px 24px 32px;
+    }
+
+    .footer-grid {
+      display: grid;
+      gap: 48px;
+      margin-bottom: 48px;
+    }
+
+    @media (min-width: 768px) {
+      .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .footer-grid {
+        grid-template-columns: 2fr 1fr 1fr 1fr;
+      }
+    }
+
+    .footer-brand img {
+      height: 48px;
+      width: auto;
+      margin-bottom: 16px;
+    }
+
+    .footer-desc {
+      font-size: 14px;
+      color: var(--muted-foreground);
+      line-height: 1.7;
+      margin-bottom: 24px;
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 12px;
+    }
+
+    .social-link {
+      width: 40px;
+      height: 40px;
+      background: var(--muted);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted-foreground);
+      transition: all 0.2s;
+    }
+
+    .social-link:hover {
+      background: var(--martini-dark-blue);
+      color: var(--foreground);
+    }
+
+    .footer-title {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .footer-links a {
+      font-size: 14px;
+      color: var(--muted-foreground);
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover {
+      color: var(--foreground);
+    }
+
+    .footer-bottom {
+      padding-top: 32px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      align-items: center;
+      text-align: center;
+    }
+
+    @media (min-width: 768px) {
+      .footer-bottom {
+        flex-direction: row;
+        justify-content: space-between;
+      }
+    }
+
+    .footer-copyright {
+      font-size: 14px;
+      color: var(--muted-foreground);
+    }
+
+    .footer-stripe {
+      display: flex;
+      gap: 4px;
+    }
+
+    .footer-stripe span {
+      width: 32px;
+      height: 3px;
+    }
+
+    .footer-stripe span:nth-child(1) { background: var(--martini-dark-blue); }
+    .footer-stripe span:nth-child(2) { background: var(--martini-light-blue); }
+    .footer-stripe span:nth-child(3) { background: var(--martini-red); }
+
+    /* SVG Icons inline */
+    .icon {
+      width: 20px;
+      height: 20px;
+    }
+
+    .icon-lg {
+      width: 24px;
+      height: 24px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="nav-container">
+      <a href="#" class="nav-logo">
+        <img src="/images/logo.jpg" alt="Bettega Race Club">
+      </a>
+      <ul class="nav-links">
+        <li><a href="#about">關於我們</a></li>
+        <li><a href="#experience">賽道體驗</a></li>
+        <li><a href="#gallery">精彩回顧</a></li>
+        <li><a href="#calendar">活動日程</a></li>
+        <li><a href="#partnership">合作夥伴</a></li>
+      </ul>
+      <button class="nav-cta">立即報名</button>
+      <button class="nav-mobile-toggle" aria-label="Toggle menu">
+        <svg class="icon-lg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-bg">
+      <img src="/images/hero-racing.jpg" alt="Racing car on track">
+    </div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="hero-stripe">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <h1 class="hero-title">真正的駕駛，只會發生在賽道上</h1>
+      <p class="hero-subtitle">在安全且專業的環境中體驗真正的賽道駕駛文化，與志同道合的車友一起探索極限</p>
+      <div class="hero-buttons">
+        <button class="btn-primary">
+          立即報名
+          <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+          </svg>
+        </button>
+        <button class="btn-secondary">
+          <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+          </svg>
+          觀看影片
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="section">
+    <div class="container">
+      <div class="about-grid">
+        <div>
+          <span class="section-label">關於我們</span>
+          <h2 class="section-title">貝堤加賽道俱樂部</h2>
+          <p class="about-text">
+            Bettega Race Club 致力於推廣正統的賽道駕駛文化，為熱愛駕駛的車友提供安全、專業且充滿樂趣的賽道體驗。我們相信，真正的駕駛樂趣來自於對速度的追求、對技術的磨練，以及與志同道合夥伴的分享。
+          </p>
+        </div>
+        <div class="feature-cards">
+          <div class="feature-card">
+            <div class="feature-icon">
+              <svg class="icon-lg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+              </svg>
+            </div>
+            <h3 class="feature-title">麗寶國際賽車場</h3>
+            <p class="feature-desc">台灣唯一 FIA Grade 2 認證賽道</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <svg class="icon-lg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+              </svg>
+            </div>
+            <h3 class="feature-title">大鵬灣國際賽車場</h3>
+            <p class="feature-desc">南台灣首屈一指的國際級賽道</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience Section -->
+  <section id="experience" class="section experience">
+    <div class="experience-bg">
+      <img src="/images/track-day.jpg" alt="Track day experience">
+    </div>
+    <div class="experience-overlay"></div>
+    <div class="container experience-content">
+      <div class="experience-grid">
+        <div>
+          <span class="section-label">賽道體驗</span>
+          <h2 class="section-title">專業 Track Day 活動</h2>
+          <p class="about-text" style="margin-bottom: 32px;">
+            我們的 Track Day 活動經過精心規劃，從新手到進階車手都能找到適合自己的駕駛節奏。專業的活動流程、完善的安全措施，讓您專注於享受駕駛的純粹樂趣。
+          </p>
+          <div class="experience-features">
+            <div class="exp-feature">
+              <div class="exp-feature-icon">
+                <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                </svg>
+              </div>
+              <div>
+                <h4 class="exp-feature-title">專業安全管理</h4>
+                <p class="exp-feature-desc">完整的安全規範與專業救援團隊待命</p>
+              </div>
+            </div>
+            <div class="exp-feature">
+              <div class="exp-feature-icon">
+                <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+              </div>
+              <div>
+                <h4 class="exp-feature-title">充裕駕駛時間</h4>
+                <p class="exp-feature-desc">每場活動提供充足的下場時間</p>
+              </div>
+            </div>
+            <div class="exp-feature">
+              <div class="exp-feature-icon">
+                <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
+                </svg>
+              </div>
+              <div>
+                <h4 class="exp-feature-title">分組駕駛制度</h4>
+                <p class="exp-feature-desc">依照經驗分組，確保每位車友都能盡興</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div style="background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 32px;">
+            <h3 style="font-size: 20px; font-weight: 600; margin-bottom: 24px;">為什麼選擇我們？</h3>
+            <p style="font-size: 16px; color: var(--muted-foreground); line-height: 1.8; margin-bottom: 24px;">
+              七年來，我們舉辦了無數場成功的賽道活動，累積了豐富的經驗。我們不只是活動主辦方，更是一群熱愛賽道的車友，深知每位參與者對於駕駛體驗的期待。
+            </p>
+            <div class="stats">
+              <div>
+                <p class="stat-value">20+</p>
+                <p class="stat-label">年度活動場次</p>
+              </div>
+              <div>
+                <p class="stat-value">50+</p>
+                <p class="stat-label">活躍成員</p>
+              </div>
+              <div>
+                <p class="stat-value">7年</p>
+                <p class="stat-label">活動歷史</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery Section -->
+  <section id="gallery" class="section">
+    <div class="container">
+      <div style="text-align: center; margin-bottom: 48px;">
+        <span class="section-label" style="justify-content: center;">精彩回顧</span>
+        <h2 class="section-title">賽道上的精彩瞬間</h2>
+      </div>
+      <div class="gallery-grid">
+        <div class="gallery-item">
+          <img src="/images/gallery-1.jpg" alt="Racing moment 1">
+          <div class="gallery-overlay"></div>
+        </div>
+        <div class="gallery-item">
+          <img src="/images/gallery-2.jpg" alt="Racing moment 2">
+          <div class="gallery-overlay"></div>
+        </div>
+        <div class="gallery-item">
+          <img src="/images/gallery-3.jpg" alt="Racing moment 3">
+          <div class="gallery-overlay"></div>
+        </div>
+        <div class="gallery-item">
+          <img src="/images/gallery-4.jpg" alt="Racing moment 4">
+          <div class="gallery-overlay"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Lifestyle Section -->
+  <section class="section lifestyle">
+    <div class="lifestyle-bg">
+      <img src="/images/lifestyle.jpg" alt="Driver lifestyle">
+    </div>
+    <div class="lifestyle-overlay"></div>
+    <div class="container">
+      <div class="lifestyle-content">
+        <span class="section-label">車友生活</span>
+        <h2 class="section-title">不只是駕駛，更是一種生活態度</h2>
+        <p class="lifestyle-text">
+          加入 Bettega Race Club，您將成為一個獨特社群的一份子。我們定期舉辦各類活動，從賽道日到車友聚會，每一次相聚都是分享熱情的機會。
+        </p>
+        <div class="lifestyle-list">
+          <div class="lifestyle-item">
+            <span class="lifestyle-check">
+              <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+              </svg>
+            </span>
+            <span>專屬車友社群交流平台</span>
+          </div>
+          <div class="lifestyle-item">
+            <span class="lifestyle-check">
+              <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+              </svg>
+            </span>
+            <span>定期舉辦車友聚會活動</span>
+          </div>
+          <div class="lifestyle-item">
+            <span class="lifestyle-check">
+              <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+              </svg>
+            </span>
+            <span>駕駛技術分享與交流</span>
+          </div>
+          <div class="lifestyle-item">
+            <span class="lifestyle-check">
+              <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+              </svg>
+            </span>
+            <span>會員專屬優惠與福利</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Calendar Section -->
+  <section id="calendar" class="section">
+    <div class="container">
+      <div class="calendar-intro">
+        <span class="section-label" style="justify-content: center;">活動日程</span>
+        <h2 class="section-title">即將舉辦的活動</h2>
+        <p>我們定期在台灣各大國際賽車場舉辦 Track Day 與 Time Attack 活動，歡迎報名參加。</p>
+      </div>
+      <div class="events-grid">
+        <div class="event-card">
+          <div class="event-header">
+            <span class="event-badge track-day">Track Day</span>
+            <p class="event-date">2026 年 4 月 12 日</p>
+            <h3 class="event-title">麗寶春季 Track Day</h3>
+          </div>
+          <div class="event-body">
+            <div class="event-info">
+              <div class="event-info-item">
+                <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                </svg>
+                麗寶國際賽車場
+              </div>
+              <div class="event-info-item">
+                <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                08:00 - 17:00
+              </div>
+              <div class="event-info-item">
+                <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
+                </svg>
+                限額 30 人
+              </div>
+            </div>
+            <button class="event-btn">立即報名</button>
+          </div>
+        </div>
+        <div class="event-card">
+          <div class="event-header">
+            <span class="event-badge time-attack">Time Attack</span>
+            <p class="event-date">2026 年 5 月 18 日</p>
+            <h3 class="event-title">大鵬灣計時挑戰賽</h3>
+          </div>
+          <div class="event-body">
+            <div class="event-info">
+              <div class="event-info-item">
+                <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                </svg>
+                大鵬灣國際賽車場
+              </div>
+              <div class="event-info-item">
+                <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                08:00 - 17:00
+              </div>
+              <div class="event-info-item">
+                <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
+                </svg>
+                限額 25 人
+              </div>
+            </div>
+            <button class="event-btn">立即報名</button>
+          </div>
+        </div>
+        <div class="event-card">
+          <div class="event-header">
+            <span class="event-badge track-day">Track Day</span>
+            <p class="event-date">2026 年 6 月 22 日</p>
+            <h3 class="event-title">麗寶夏季 Track Day</h3>
+          </div>
+          <div class="event-body">
+            <div class="event-info">
+              <div class="event-info-item">
+                <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                </svg>
+                麗寶國際賽車場
+              </div>
+              <div class="event-info-item">
+                <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                08:00 - 17:00
+              </div>
+              <div class="event-info-item">
+                <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
+                </svg>
+                限額 30 人
+              </div>
+            </div>
+            <button class="event-btn">立即報名</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Culture Section -->
+  <section class="section culture">
+    <div class="culture-bg">
+      <img src="/images/motorsport-culture.jpg" alt="Motorsport culture">
+    </div>
+    <div class="culture-overlay"></div>
+    <div class="container culture-content">
+      <span class="section-label" style="justify-content: center;">賽道文化</span>
+      <h2 class="culture-title">我們的理念</h2>
+      <p class="culture-text">
+        賽道駕駛不只是追求速度，更是一種對駕駛藝術的追求。在 Bettega Race Club，我們相信每一次的下場都是學習與成長的機會，每一圈都是對自我的挑戰。
+      </p>
+      <div class="culture-grid">
+        <div class="culture-card">
+          <div class="culture-icon">
+            <svg class="icon-lg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+            </svg>
+          </div>
+          <h3 class="culture-card-title">安全至上</h3>
+          <p class="culture-card-desc">完善的安全規範，讓您專注享受駕駛樂趣</p>
+        </div>
+        <div class="culture-card">
+          <div class="culture-icon">
+            <svg class="icon-lg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+            </svg>
+          </div>
+          <h3 class="culture-card-title">持續精進</h3>
+          <p class="culture-card-desc">不斷提升駕駛技術，追求更快的單圈成績</p>
+        </div>
+        <div class="culture-card">
+          <div class="culture-icon">
+            <svg class="icon-lg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+            </svg>
+          </div>
+          <h3 class="culture-card-title">熱情分享</h3>
+          <p class="culture-card-desc">與志同道合的車友分享駕駛的熱情與喜悅</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Partnership Section -->
+  <section id="partnership" class="section">
+    <div class="container">
+      <div class="partnership-grid">
+        <div>
+          <span class="section-label">合作夥伴</span>
+          <h2 class="section-title">攜手合作，共創賽道文化</h2>
+          <p class="partnership-text">
+            我們歡迎各類型的合作夥伴加入，無論是品牌贊助、活動協辦，還是技術支援，讓我們一起為台灣的賽道文化注入更多能量。
+          </p>
+          <div class="partnership-types">
+            <div class="partnership-type">
+              <div class="partnership-icon">
+                <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+                </svg>
+              </div>
+              <div>
+                <h4 class="partnership-type-title">品牌贊助</h4>
+                <p class="partnership-type-desc">汽車品牌、輪胎、改裝品牌合作機會</p>
+              </div>
+            </div>
+            <div class="partnership-type">
+              <div class="partnership-icon">
+                <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
+                </svg>
+              </div>
+              <div>
+                <h4 class="partnership-type-title">車隊合作</h4>
+                <p class="partnership-type-desc">與其他車隊或俱樂部的聯合活動</p>
+              </div>
+            </div>
+            <div class="partnership-type">
+              <div class="partnership-icon">
+                <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                </svg>
+              </div>
+              <div>
+                <h4 class="partnership-type-title">技術支援</h4>
+                <p class="partnership-type-desc">專業維修、調校服務合作</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="contact-card">
+          <h3 class="contact-title">聯絡我們</h3>
+          <div class="contact-info">
+            <div class="contact-item">
+              <div class="contact-icon">
+                <svg class="icon-lg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                </svg>
+              </div>
+              <div>
+                <p class="contact-label">Email</p>
+                <p class="contact-value">contact@bettegaraceclub.com</p>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon">
+                <svg class="icon-lg" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                </svg>
+              </div>
+              <div>
+                <p class="contact-label">Facebook</p>
+                <p class="contact-value">@BettegaRaceClub</p>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon">
+                <svg class="icon-lg" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                </svg>
+              </div>
+              <div>
+                <p class="contact-label">Instagram</p>
+                <p class="contact-value">@bettega_race_club</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="/images/logo.jpg" alt="Bettega Race Club">
+          <p class="footer-desc">
+            貝堤加賽道俱樂部致力於推廣正統的賽道駕駛文化，為熱愛駕駛的車友提供安全、專業且充滿樂趣的賽道體驗。
+          </p>
+          <div class="footer-social">
+            <a href="#" class="social-link" aria-label="Facebook">
+              <svg class="icon" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+              </svg>
+            </a>
+            <a href="#" class="social-link" aria-label="Instagram">
+              <svg class="icon" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer-title">快速連結</h4>
+          <div class="footer-links">
+            <a href="#about">關於我們</a>
+            <a href="#experience">賽道體驗</a>
+            <a href="#gallery">精彩回顧</a>
+            <a href="#calendar">活動日程</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer-title">活動場地</h4>
+          <div class="footer-links">
+            <a href="#">麗寶國際賽車場</a>
+            <a href="#">大鵬灣國際賽車場</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer-title">聯絡資訊</h4>
+          <div class="footer-links">
+            <a href="mailto:contact@bettegaraceclub.com">contact@bettegaraceclub.com</a>
+            <a href="#">Facebook 粉絲專頁</a>
+            <a href="#">Instagram</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copyright">&copy; 2026 Bettega Race Club. All rights reserved.</p>
+        <div class="footer-stripe">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
